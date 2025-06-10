@@ -79,8 +79,7 @@ int main() {
 
       for (int i = userRemoveChoice - 1; i <= integerListCount; i++)
       {
-        int tempInteger = integerList[i + 1];
-        integerList[i] = tempInteger;
+        integerList[i] = integerList[i + 1];
       }
       integerListCount--;
       printf("\nSuccessfully removed an integer!\n");
