@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int checkListCapacityCount();
+
 int main() {
   // TITLE        :     DYNAMIC INTEGER LIST MANAGER   
   // AUTHOR       :     ichimaru001
@@ -9,6 +11,8 @@ int main() {
   //                    VIEW LIST, REMOVE NUMBER BY POSITION,
   //                    DOUBLE A NUMBER AT GIVEN POSITION,
   //                    FREE ALL MEMORY ON EXIT
+  // TIME TAKEN   :     1HOUR 
+  // TO COMPLETE
 
 
   char menuOptions[][50] = {
@@ -45,15 +49,7 @@ int main() {
       scanf(" %d", &userInteger);
 
       // ** CHECK LIST CAPACITY AND COUNT
-      if (integerListCount >= integerListCapacity) {
-        integerListCapacity *= 2;
-        integerList = realloc(integerList, integerListCapacity * sizeof(int));
-        if (integerList == NULL) {
-          printf("\nMemory allocation failed!\n");
-          return 1;
-        }
-        printf("\nMemory capacity reached!\nMemory expanded!\n");
-      }
+      checkListCapacityCount(integerListCount, &integerListCapacity, &integerList);
       // **
 
       integerList[integerListCount] = userInteger;
@@ -109,3 +105,16 @@ int main() {
   free(integerList);
   return 0;
 }
+
+
+int checkListCapacityCount(int integerListCount, int *integerListCapacity, int **integerList) {
+  if (integerListCount >= *integerListCapacity) {
+    *integerListCapacity *= 2;
+    *integerList = realloc(*integerList, *integerListCapacity * sizeof(int));
+    if (*integerList == NULL) {
+      printf("\nMemory allocation failed!\n");
+      return 1;
+    }
+    printf("\nMemory capacity reached!\nMemory expanded!\n");
+  }
+};
